@@ -20,7 +20,7 @@ def check_logs(filename: str):
     df = pd.DataFrame(data=data['logs'])
     print(df)
     total_time = df['time'].sum() - data["start"]["start_time"]
-    print(f"{data["end"] = }")
+    print(f"{data['end'] = }")
     print(f"Total time recorded = {float(total_time)}")    
 
 if __name__ == "__main__":
