@@ -6,10 +6,8 @@ git clone https://github.com/Zvmcevap/vega_log_test.git
 ```
 ```bash
 module load OpenMPI/4.1.6-GCC-13.2.0
-
-```bash
-module load OpenBLAS/0.3.24-GCC-13.2.0
 ```
+
 ```bash
 module load Python/3.11.5-GCCcore-13.2.0
 ```
