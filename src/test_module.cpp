@@ -9,15 +9,15 @@ void run(int rank, int loop_count, int sleep_ms)
 {
     double start = MPI_Wtime();
     std::string rank_str = "\"rank\": " + std::to_string(rank) + ",";
-    // if (rank == 0)
-    // {
-    //     std::cout << "{" << std::endl;
-    // }
-    // std::cout << "\"start" << std::to_string(rank) << "\": {" << rank_str + ",\"start_time\": " + std::to_string(start) << "}," << std::endl;
-    // MPI_Barrier(MPI_COMM_WORLD);
     if (rank == 0)
     {
-        std::cout << "{\n\"logs\": \n[" << std::endl;
+        std::cout << "{" << std::endl;
+        std::cout << "\"start\": {" << rank_str + "\"start_time\": " + std::to_string(start) << "}," << std::endl;
+    }
+    MPI_Barrier(MPI_COMM_WORLD);
+    if (rank == 0)
+    {
+        std::cout << "\"logs\": \n[" << std::endl;
     }
     MPI_Barrier(MPI_COMM_WORLD);
 
