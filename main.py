@@ -26,8 +26,8 @@ def check_logs(filename: str):
 if __name__ == "__main__":
     comm = MPI.COMM_WORLD
     rank = comm.Get_rank()
-    loops = 600
-    sleep_ms = 10
+    loops = 6000
+    sleep_ms = 100
     test_module.run(rank, loops, sleep_ms)
     if rank == 0:
         check_logs('logs.json')
