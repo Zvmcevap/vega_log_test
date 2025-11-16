@@ -1,3 +1,4 @@
 .vscode
 logs.json
+results.json
 test_module.so

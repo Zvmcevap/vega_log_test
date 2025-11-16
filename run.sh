@@ -12,4 +12,4 @@ export OMPI_MCA_PML="ucx"
 export OMPI_MCA_osc="ucx"
 
 # Run the solver
-mpirun python3 main.py
+mpirun python3 main.py 0

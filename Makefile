@@ -10,19 +10,22 @@ PYTHON_LIBS := $(shell python3-config --libs)
 # Add explicit python lib
 PYTHON_LIB := -lpython$(PYTHON_VERSION) $(PYTHON_LDFLAGS) $(PYTHON_LIBS)
 
-INCLUDES += $(PYBIND11_INCLUDES) $(PYTHON_INCLUDE)
+INCLUDES += $(PYBIND11_INCLUDES) $(PYTHON_INCLUDE) -Isrc/spdlog/include
 LIB += $(PYTHON_LIB)
 
 LOG_LEVEL ?= 0
 
 # source file(s)
-SRCS = src/test_module.cpp
+SRCS = 
 
 # default target
 all: clean test_module.so
 
-test_module.so: $(SRCS)
+# test_module.so: src/test_module.cpp
+# 	$(CPP) -shared -fPIC -fno-common -DLOG_LEVEL=$(LOG_LEVEL) $(INCLUDES) $^ -o $@ $(LIB)
+
+test_module.so: src/spdlog_module.cpp
 	$(CPP) -shared -fPIC -fno-common -DLOG_LEVEL=$(LOG_LEVEL) $(INCLUDES) $^ -o $@ $(LIB)
 
 clean:
-	rm -f test_module.so
+	rm -f *.so
