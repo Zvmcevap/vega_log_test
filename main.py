@@ -21,11 +21,11 @@ def check_logs(filename: str):
     df = pd.DataFrame(data=data['logs'])
     total_time = df['time'].sum()
 
-    with open('results.json', 'r') as f:
-        try:
-            previus_results = json.load(f)
-        except:
-            previus_results = []
+    try:
+        with open('results.json', 'r+') as f:
+                previus_results = json.load(f)
+    except:
+        previus_results = []
     
     with open('results.json', 'w') as f:
         result = {
