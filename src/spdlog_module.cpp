@@ -32,7 +32,6 @@ static std::shared_ptr<spdlog::logger> make_logger_for_rank(int rank, bool async
         auto stdout_sink = std::make_shared<spdlog::sinks::stdout_sink_mt>();
         stdout_sink->set_pattern(rank_prefix + "%v },");
 
-        // Runtime level (must be consistent with LOG_LEVEL meaning)
         stdout_sink->set_level(static_cast<spdlog::level::level_enum>(SPDLOG_ACTIVE_LEVEL));
         static bool thread_pool_initialized = false;
         if (!thread_pool_initialized)
@@ -48,6 +47,9 @@ static std::shared_ptr<spdlog::logger> make_logger_for_rank(int rank, bool async
             sinks.end(),
             spdlog::thread_pool(),
             spdlog::async_overflow_policy::block);
+
+        logger->set_level(
+            static_cast<spdlog::level::level_enum>(SPDLOG_ACTIVE_LEVEL));
 
         return logger;
     }

@@ -30,8 +30,8 @@ def check_logs(filename: str):
     with open('results.json', 'w') as f:
         result = {
             'async': async_logger,
-            'start': data['start'],
-            'end': data['end'],
+            'logs_count': len(data['logs']),
+            'elapsed_time': data['end']['elapsed_time'],
             'total_time': total_time
         }
         previus_results.append(result)
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     comm = MPI.COMM_WORLD
     rank = comm.Get_rank()
     loops = 6000
-    sleep_ms = 100
+    sleep_ms = 1
     test_module.run(rank, loops, sleep_ms, async_logger)
     if rank == 0:
         check_logs('logs.json')
